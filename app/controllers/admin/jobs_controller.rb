@@ -51,6 +51,6 @@ before_action :require_is_admin
 
     def job_params
       params.require(:job).permit(:title, :description,:wage_upper_bound,
-                                  :wage_lower_bound, :contact_email)
+                                  :wage_lower_bound, :contact_email, :is_hidden)
     end
 end
