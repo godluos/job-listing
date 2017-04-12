@@ -20,10 +20,18 @@ before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destro
 
   def show
     @job = Job.find(params[:id])
+    if @job.is_hidden
+      flash[:warning] = "This Job already archieved"
+      redirect_to root_path
+    end
   end
 
   def edit
     @job = Job.find(params[:id])
+    if @job.is_hidden
+      flash[:warning] = "This Job already archieved"
+      redirect_to root_path
+    end
   end
 
   def update
@@ -38,7 +46,7 @@ before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destro
   def destroy
     @job = Job.find(params[:id])
     @job.destroy
-      redirect_to root_path, alert: "Job delete"
+          redirect_to root_path, alert: "Job delete"
   end
 
 
